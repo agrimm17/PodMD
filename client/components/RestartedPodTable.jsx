@@ -30,7 +30,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const RestartedPodTable = ({ restartedPods }) => {
   const rows = [];
   restartedPods.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : ((b.timestamp < a.timestamp) ? -1 : 0));
-  console.log(restartedPods);
   for (let i = 0; i < Math.min(restartedPods.length, 10); i++) {
     let { timestamp, podName, namespace, label, value, threshold } = restartedPods[i];
     rows.push(<RestartedPodRow key={`${timestamp} ${podName}`} timestamp={new Date(timestamp)} podName={podName} namespace={namespace} label={label} value={value} threshold={threshold} />);
@@ -41,12 +40,12 @@ const RestartedPodTable = ({ restartedPods }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead id='tblhd'>
           <StyledTableRow id='str'>
-              <StyledTableCell>Restarted Pod</StyledTableCell>
-              <StyledTableCell>Time Deleted</StyledTableCell>
-              <StyledTableCell>Namespace</StyledTableCell>
-              <StyledTableCell>Metric</StyledTableCell>
-              <StyledTableCell>Restart</StyledTableCell>
-              <StyledTableCell>Threshold</StyledTableCell>
+              <StyledTableCell id='firstHeader' className='tableHeader'>Restarted Pod</StyledTableCell>
+              <StyledTableCell className='tableHeader'>Time Deleted</StyledTableCell>
+              <StyledTableCell className='tableHeader'>Namespace</StyledTableCell>
+              <StyledTableCell className='tableHeader'>Metric</StyledTableCell>
+              <StyledTableCell className='tableHeader'>Restart</StyledTableCell>
+              <StyledTableCell className='tableHeader'>Threshold</StyledTableCell>
           </StyledTableRow>
         </TableHead>
         <TableBody>

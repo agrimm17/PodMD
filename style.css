@@ -29,6 +29,10 @@ a:hover {
   color: #535bf2;
 }
 
+.OuterContainer {
+  margin-top: 80px;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -46,9 +50,23 @@ h1 {
 h2 {
   font-family: 'Aldrich', sans-serif;
   color: #adadad;
+  padding: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 h3 {
+  font-family: 'Aldrich', sans-serif;
+  color: #adadad;
+  margin: 0;
+}
+
+h3 {
+  font-family: 'Aldrich', sans-serif;
+  color: #adadad;
+}
+
+h4 {
   font-family: 'Aldrich', sans-serif;
   color: #adadad;
 }
@@ -60,6 +78,11 @@ h3 {
   text-align: center;
 }
 
+#toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
 #sliderTitle {
   display: flex;
   flex-direction: row;
@@ -67,24 +90,20 @@ h3 {
   margin: 0;
 }
 
+canvas {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .sliderBox {
+  margin-top: 20px;
+  margin-left: 20px;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-#timeInput {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 0.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -94,8 +113,13 @@ h3 {
 
 #paramBox {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  border-radius: 8px;
+  width: 470px;
+  background-color: #363637;
+  filter: drop-shadow(1px 1px 1px #1e1d1d);
 }
 
 li {
@@ -141,33 +165,58 @@ button:focus-visible {
 }
 
 #settingsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 0;
+  width: 470px;
   border-radius: 8px;
   background-color: #363637;
-  width: 400px;
   filter: drop-shadow(1px 1px 1px #1e1d1d);
 }
 
 #outerBox {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  height: 300px;
 }
 
 #configButton {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-self: flex-end;
   padding: 20px;
 }
 
+#timeInputLabel {
+  font-family: 'Aldrich', sans-serif;
+  color: #adadad;
+}
+
 #timeInput {
-  margin-top: 8px;
-  padding: 5px;
   border-radius: 4px;
-  background-color: #242424;
   height: 25px;
+  width: 45px;
   text-align: center;
-  border: 0;
+  border: 2px solid #adadad;
+  color: #adadad;
+  background-color: transparent;
+  font-family: 'Aldrich', sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+#timeInputField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#timeTool {
+  margin-left: 10px;
+  color: #adadad;
 }
 
 #configContainer {
@@ -175,14 +224,24 @@ button:focus-visible {
 }
 
 .graphs {
-  width: 900px;
-  margin-top: 50px;
+  position: relative;
+  width: 60em;
+  height: 620px;
+  border-radius: 8px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: space-between;
   margin-bottom: 20px;
-  /* background-color: #666565; */
+  background-color: #363637;
+  filter: drop-shadow(1px 1px 1px #1e1d1d);
+}
+
+#refresh-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 #graphContain {
@@ -228,22 +287,34 @@ tr:nth-child(odd) {
   }
 }
 
+#innerGraphBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 470px;
+}
+
 .sliderContainer {
-  position: relative; /* Change to relative */
-  width: 100%; /* Set a width */
-  height: 80px; /* Define a height */
+  position: relative;
+  width: 350px;
+  height: 60px;
   display: flex;
   align-items: center;
+  flex-direction: row-reverse;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .tabs {
   display: flex;
-  position: relative;
-  background: black;
-  padding: 8px; /* Adjust padding for a better fit */
-  border-radius: 40px; /* Adjusted for a smaller radius */
-  box-shadow: 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  flex-shrink: 0;
+  justify-content: space-between;
+  min-width: 300px;
+  position: absolute;
+  background: #242424;
+  padding: 8px;
+  border-radius: 40px;
+  box-shadow: 0 6px 12px 0 #2a2a2b;
 }
 
 .tabs * {
@@ -256,13 +327,15 @@ tr:nth-child(odd) {
 
 .tab {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  height: 40px; /* Adjust height */
-  width: 150px; /* Adjust width */
-  font-size: 16px; /* Adjust font size */
+  min-height: 40px;
+  min-width: 75px;
+  font-size: 14px;
   font-weight: 600;
-  border-radius: 40px; /* Adjusted for a smaller radius */
+  font-family: 'Aldrich', sans-serif;
+  border-radius: 40px;
   cursor: pointer;
   transition: color 0.15s ease-in;
 }
@@ -276,22 +349,71 @@ input[id='radio-1']:checked ~ .graphSlider {
 }
 
 input[id='radio-2']:checked ~ .graphSlider {
-  transform: translateX(150px); /* Match with tab width */
+  transform: translateX(80px); 
 }
 
 input[id='radio-3']:checked ~ .graphSlider {
-  transform: translateX(300px); /* Match with tab width */
+  transform: translateX(160px); 
 }
 
 .graphSlider {
-  position: absolute;
+  position: relative;
   display: flex;
-  height: 40px; /* Adjust height */
-  width: 150px; /* Match with tab width */
+  height: 40px;
+  width: 75px; 
   background: #54abb4;
   z-index: 1;
-  border-radius: 40px; /* Adjusted for a smaller radius */
+  border-radius: 40px;
   transition: 0.25s ease-out;
+}
+
+th {
+  text-align: left;
+}
+
+#firstHeader {
+  color: #adadad;
+  text-align: left;
+}
+
+.MuiTableContainer-root.settingContain {
+  color: red;
+}
+
+.MuiTableCell-root.MuiTableCell-head.tableHeader {
+  font-family: 'Aldrich', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: #adadad;
+}
+
+.MuiButtonBase-root .MuiSvgIcon-root path {
+  stroke: #adadad;
+}
+
+.MuiButtonBase-root:focus,
+.MuiButtonBase-root:active path {
+  border: none;
+  outline: none;
+}
+
+#tblhd .MuiTableCell-root {
+  padding: 5px;
+  text-align: center;
+  font-size: 15px;
+  color: #adadad;
+}
+#tblhd #firstHeader {
+  text-align: left;
+}
+
+.MuiTableBody-root {
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: #adadad;
 }
 
 @media (max-width: 760px) {
@@ -299,21 +421,3 @@ input[id='radio-3']:checked ~ .graphSlider {
     transform: scale(0.6);
   }
 }
-
-/* .thead {
-  background-color: #242424;
-  color: #242424;
-  font-weight: 900;
-} */
-/*
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  } */

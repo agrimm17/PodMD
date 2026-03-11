@@ -9,35 +9,27 @@ module.exports = {
   entry: './main.jsx',
   output: {
     filename: 'bundle.js',
-    publicPath: '/',
-    path: path.resolve(__dirname, "build")
+    publicPath: './',
+    path: path.resolve(__dirname, 'build'),
   },
-  devtool: 'eval-source-map',
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  devtool:
+    process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
   devServer: {
     compress: false,
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 8080,
     hot: true,
     static: {
       directory: path.resolve(__dirname, 'build'),
-      publicPath: '/'
     },
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    proxy: [
-      {
-        context: ['/**'],
-        target: 'http://localhost:3333',
-        changeOrigin: true,
-        secure: false,
-      }
-    ]
+
   },
   module: {
     rules: [
       {
         test: /\.(png|jpeg|gif|svg)$/i,
-        type: 'asset/resource'
+        type: 'asset/resource',
       },
       {
         test: /.(js|jsx)$/,
@@ -50,7 +42,7 @@ module.exports = {
               presets: ['@babel/preset-env', '@babel/preset-react'],
             },
           },
-        ]
+        ],
       },
       {
         test: /.(css|scss)$/,
@@ -63,19 +55,19 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'assets/'
-          }
-        }
-      }
-    ]
+            outputPath: 'assets/',
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      favicon: './client/assets/logoDesignFavicon.png'
+      favicon: './client/assets/logo2.png',
     }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-}
+};
